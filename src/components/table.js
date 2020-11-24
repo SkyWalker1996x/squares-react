@@ -1,35 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const Table = () => {
-  const tableConfig = {
-    width: 4,
-    height: 4,
-    cellSize: 50,
-  };
-
-  const [tableParams, setTableParams] = useState({
-    width: 5,
-    height: 4,
-    cellSize: 100,
-  });
+const Table = ({ tableParams }) => {
+  const { width, height, cellSize } = tableParams;
 
   const styleCellSize = {
-    width: tableParams.cellSize,
-    height: tableParams.cellSize
-  }
+    width: cellSize,
+    height: cellSize,
+  };
 
   return (
-    <div className="table">
-      {Array.from({ length: tableParams.height }, (v, k) => {
-        return (
-          <div className="row" key={k}>
-            {Array.from({ length: tableParams.width }, (v, k) => {
-              return <div className="cell" key={k} style={styleCellSize}/>;
-            })}
-          </div>
-        );
-      })}
-    </div>
+    <table className="table">
+      <tbody>
+        {Array.from({ length: height }, (v, k) => {
+          return (
+            <tr className="row" key={k}>
+              {Array.from({ length: width }, (v, k) => {
+                return <td className="cell" key={k} style={styleCellSize} />;
+              })}
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   );
 };
 
