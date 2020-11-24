@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { Table } from './table';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <h1>initial square-react task</h1>
+    <div className="table-wrapper">
+      <Table />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
