@@ -1,5 +1,7 @@
 const createArray = (number) => {
-  return Array.from({ length: number }, (v, k) => k);
+  return Array.from({ length: number }, () => ({
+    id: generateId(),
+  }));
 };
 
 const transformConfig = (config) => {
@@ -12,4 +14,8 @@ const transformConfig = (config) => {
   };
 };
 
-export { transformConfig };
+const generateId = () => {
+  return `f${(~~(Math.random() * 1e8)).toString(16)}`;
+};
+
+export { transformConfig, generateId };

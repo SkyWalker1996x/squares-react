@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Table } from './table';
-import { transformConfig } from '../utils';
+import { transformConfig, generateId } from '../utils';
 import { initTableConfig, initTableInteractive } from '../data';
 
 const App = () => {
@@ -11,12 +11,12 @@ const App = () => {
     initTableInteractive
   );
 
-  const tableRef = useRef(null);
-
   const addRow = () => {
     setTableConfig((prevState) => {
       const { rows } = prevState;
-      const newItem = rows[rows.length - 1] + 1;
+      const newItem = {
+        id: generateId(),
+      };
 
       return {
         ...prevState,
@@ -27,7 +27,9 @@ const App = () => {
   const addCol = () => {
     setTableConfig((prevState) => {
       const { columns } = prevState;
-      const newItem = columns[columns.length - 1] + 1;
+      const newItem = {
+        id: generateId(),
+      };
 
       return {
         ...prevState,
@@ -48,6 +50,13 @@ const App = () => {
         rows: newRows,
       };
     });
+
+    setTableInteractive((prevState) => {
+      return {
+        ...prevState,
+        active: false,
+      };
+    });
   };
   const removeCol = () => {
     const { columns } = tableConfig;
@@ -60,6 +69,13 @@ const App = () => {
       return {
         ...prevState,
         columns: newColumns,
+      };
+    });
+
+    setTableInteractive((prevState) => {
+      return {
+        ...prevState,
+        active: false,
       };
     });
   };
@@ -102,11 +118,7 @@ const App = () => {
       onMouseOver={overTable}
       onMouseLeave={outTable}
     >
-      <Table
-        tableConfig={tableConfig}
-        styleCellSize={styleCellSize}
-        tableRef={tableRef}
-      />
+      <Table tableConfig={tableConfig} styleCellSize={styleCellSize} />
       <button onClick={addRow} className="button add-row">
         +
       </button>
