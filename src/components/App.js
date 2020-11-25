@@ -45,6 +45,30 @@ const App = () => {
       };
     });
   };
+  const removeRow = () => {
+    const { rows } = tableConfig;
+    const { rowIndex } = tableInteractive;
+    const newRows = rows.filter((v, k) => k !== rowIndex);
+
+    setTableConfig((prevState) => {
+      return {
+        ...prevState,
+        rows: newRows,
+      };
+    });
+  };
+  const removeCol = () => {
+    const { columns } = tableConfig;
+    const { cellIndex } = tableInteractive;
+    const newColumns = columns.filter((v, k) => k !== cellIndex);
+
+    setTableConfig((prevState) => {
+      return {
+        ...prevState,
+        columns: newColumns,
+      };
+    });
+  };
   const overTable = (e) => {
     if (e.target.className === 'cell') {
       setTableInteractive({
@@ -91,10 +115,18 @@ const App = () => {
       <button onClick={addCol} className="button add-col">
         +
       </button>
-      <button className="button remove-row" style={styleRemoveRowBtn}>
+      <button
+        onClick={removeRow}
+        className="button remove-row"
+        style={styleRemoveRowBtn}
+      >
         -
       </button>
-      <button className="button remove-col" style={styleRemoveColBtn}>
+      <button
+        onClick={removeCol}
+        className="button remove-col"
+        style={styleRemoveColBtn}
+      >
         -
       </button>
     </div>
