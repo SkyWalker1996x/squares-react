@@ -7,31 +7,47 @@ const initTableConfig = {
   cellSize: 50,
 };
 
+const transformConfig = (config) => {
+  const { width, height, cellSize } = config;
+
+  return {
+    rows: Array.from({ length: height }, (v, k) => k),
+    columns: Array.from({ length: width }, (v, k) => k),
+    cellSize,
+  };
+};
+
 const App = () => {
-  const [tableParams, setTableParams] = useState(initTableConfig);
-  const [tableActive, setTableActive] = useState({});
+  const [tableConfig, setTableConfig] = useState(
+    transformConfig(initTableConfig)
+  );
+  const [tableInteractive, setTableInteractive] = useState({});
 
   const addRow = () => {
-    setTableParams((prevState) => {
+    setTableConfig((prevState) => {
+      const { rows } = prevState;
+      const newItem = rows[rows.length - 1] + 1;
+
       return {
         ...prevState,
-        height: prevState.height + 1,
+        rows: [...rows, newItem],
       };
     });
   };
-
   const addCol = () => {
-    setTableParams((prevState) => {
+    setTableConfig((prevState) => {
+      const { columns } = prevState;
+      const newItem = columns[columns.length - 1] + 1;
+
       return {
         ...prevState,
-        width: prevState.width + 1,
+        columns: [...columns, newItem],
       };
     });
   };
-
   const overTable = (e) => {
     if (e.target.className === 'cell') {
-      setTableActive({
+      setTableInteractive({
         active: true,
         cellIndex: e.target.cellIndex,
         rowIndex: e.target.parentNode.rowIndex,
@@ -40,9 +56,8 @@ const App = () => {
       });
     }
   };
-
   const outTable = () => {
-    setTableActive((prevState) => {
+    setTableInteractive((prevState) => {
       return {
         ...prevState,
         active: false,
@@ -51,13 +66,16 @@ const App = () => {
   };
 
   const styleRemoveColBtn = {
-    display: tableActive.active ? 'block' : 'none',
-    left: tableActive.offsetLeft,
+    display: tableInteractive.active ? 'block' : 'none',
+    left: tableInteractive.offsetLeft,
   };
-
   const styleRemoveRowBtn = {
-    display: tableActive.active ? 'block' : 'none',
-    top: tableActive.offsetTop,
+    display: tableInteractive.active ? 'block' : 'none',
+    top: tableInteractive.offsetTop,
+  };
+  const styleCellSize = {
+    width: tableConfig.cellSize,
+    height: tableConfig.cellSize,
   };
 
   return (
@@ -66,7 +84,7 @@ const App = () => {
       onMouseOver={overTable}
       onMouseLeave={outTable}
     >
-      <Table tableParams={tableParams} />
+      <Table tableConfig={tableConfig} styleCellSize={styleCellSize} />
       <button onClick={addRow} className="button add-row">
         +
       </button>

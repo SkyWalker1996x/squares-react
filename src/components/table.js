@@ -1,20 +1,15 @@
 import React from 'react';
 
-const Table = ({ tableParams }) => {
-  const { width, height, cellSize } = tableParams;
-
-  const styleCellSize = {
-    width: cellSize,
-    height: cellSize,
-  };
+const Table = ({ tableConfig, styleCellSize }) => {
+  const { rows, columns } = tableConfig;
 
   return (
     <table className="table">
       <tbody>
-        {Array.from({ length: height }, (v, k) => {
+        {rows.map((v, k) => {
           return (
             <tr className="row" key={k}>
-              {Array.from({ length: width }, (v, k) => {
+              {columns.map((v, k) => {
                 return <td className="cell" key={k} style={styleCellSize} />;
               })}
             </tr>
