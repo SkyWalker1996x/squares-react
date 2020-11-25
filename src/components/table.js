@@ -6,11 +6,15 @@ const Table = ({ tableConfig, styleCellSize }) => {
   return (
     <table className="table">
       <tbody>
-        {rows.map((v, k) => {
+        {rows.map((v, rowKey) => {
           return (
-            <tr className="row" key={k}>
-              {columns.map((v, k) => {
-                return <td className="cell" key={k} style={styleCellSize} />;
+            <tr className="row" key={rowKey}>
+              {columns.map((v, colKey) => {
+                return (
+                  <td className="cell" key={colKey} style={styleCellSize}>
+                    {v}
+                  </td>
+                );
               })}
             </tr>
           );
