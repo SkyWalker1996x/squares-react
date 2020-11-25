@@ -32,4 +32,6 @@ body {
 *::after {
   box-sizing: border-box;
   font-weight: normal;
+  transition: all ease-in-out 0.5s;
+  animation-timing-function: ease-in-out;
 }
