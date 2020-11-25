@@ -1,27 +1,15 @@
 import React, { useState } from 'react';
 import { Table } from './table';
-
-const initTableConfig = {
-  width: 4,
-  height: 4,
-  cellSize: 50,
-};
-
-const transformConfig = (config) => {
-  const { width, height, cellSize } = config;
-
-  return {
-    rows: Array.from({ length: height }, (v, k) => k),
-    columns: Array.from({ length: width }, (v, k) => k),
-    cellSize,
-  };
-};
+import { transformConfig } from '../utils';
+import { initTableConfig, initTableInteractive } from '../data';
 
 const App = () => {
   const [tableConfig, setTableConfig] = useState(
     transformConfig(initTableConfig)
   );
-  const [tableInteractive, setTableInteractive] = useState({});
+  const [tableInteractive, setTableInteractive] = useState(
+    initTableInteractive
+  );
 
   const addRow = () => {
     setTableConfig((prevState) => {
