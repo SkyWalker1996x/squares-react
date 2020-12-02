@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Table } from './table';
-import { transformConfig, generateId } from '../utils';
-import { initTableInteractive } from '../data';
+import { transformConfig, generateId } from '../../utils';
+import { initTableInteractive } from '../../data';
 
 const Squares = ({ width, height, cellSize }) => {
   const [tableConfig, setTableConfig] = useState(

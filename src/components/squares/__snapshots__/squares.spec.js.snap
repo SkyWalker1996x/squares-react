@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Squares testing Render a table table render with initial props 1`] = `
+<div
+  class="table-wrapper"
+>
+  <table
+    class="table"
+  >
+    <tbody>
+      <tr
+        class="row"
+      >
+        <td
+          class="cell"
+          style="width:50px;height:50px"
+        />
+        <td
+          class="cell"
+          style="width:50px;height:50px"
+        />
+        <td
+          class="cell"
+          style="width:50px;height:50px"
+        />
+        <td
+          class="cell"
+          style="width:50px;height:50px"
+        />
+      </tr>
+      <tr
+        class="row"
+      >
+        <td
+          class="cell"
+          style="width:50px;height:50px"
+        />
+        <td
+          class="cell"
+          style="width:50px;height:50px"
+        />
+        <td
+          class="cell"
+          style="width:50px;height:50px"
+        />
+        <td
+          class="cell"
+          style="width:50px;height:50px"
+        />
+      </tr>
+      <tr
+        class="row"
+      >
+        <td
+          class="cell"
+          style="width:50px;height:50px"
+        />
+        <td
+          class="cell"
+          style="width:50px;height:50px"
+        />
+        <td
+          class="cell"
+          style="width:50px;height:50px"
+        />
+        <td
+          class="cell"
+          style="width:50px;height:50px"
+        />
+      </tr>
+      <tr
+        class="row"
+      >
+        <td
+          class="cell"
+          style="width:50px;height:50px"
+        />
+        <td
+          class="cell"
+          style="width:50px;height:50px"
+        />
+        <td
+          class="cell"
+          style="width:50px;height:50px"
+        />
+        <td
+          class="cell"
+          style="width:50px;height:50px"
+        />
+      </tr>
+    </tbody>
+  </table>
+  <button
+    class="button add-row"
+  >
+    +
+  </button>
+  <button
+    class="button add-col"
+  >
+    +
+  </button>
+  <button
+    class="button remove-row"
+    style="display:none;top:0"
+  >
+    -
+  </button>
+  <button
+    class="button remove-col"
+    style="display:none;left:0"
+  >
+    -
+  </button>
+</div>
+`;
