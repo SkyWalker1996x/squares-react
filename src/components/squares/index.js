@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Table } from './table';
 import { transformConfig, generateId } from '../../utils';
-import { initTableInteractive } from '../../data';
+import { initTableInteractive, tableButtons } from '../../data';
 
 const Squares = ({ width, height, cellSize }) => {
   const [tableConfig, setTableConfig] = useState(
@@ -99,6 +99,27 @@ const Squares = ({ width, height, cellSize }) => {
     height: tableConfig.cellSize,
   };
 
+  const buttons = tableButtons.map((btn) => {
+    const { id, value, element, className, type } = btn;
+    const listener =
+      type === 'add'
+        ? () => addTableElement(element)
+        : () => removeTableElement(element);
+
+    let style;
+    if (type === 'remove') {
+      style = element === 'row' ? styleRemoveRowBtn : styleRemoveColBtn;
+    } else {
+      style = {};
+    }
+
+    return (
+      <button key={id} onClick={listener} className={className} style={style}>
+        {value}
+      </button>
+    );
+  });
+
   return (
     <div
       className="table-wrapper"
@@ -106,29 +127,7 @@ const Squares = ({ width, height, cellSize }) => {
       onMouseLeave={outTable}
     >
       <Table tableConfig={tableConfig} styleCellSize={styleCellSize} />
-      <button onClick={() => addTableElement('row')} className="button add-row">
-        +
-      </button>
-      <button
-        onClick={() => addTableElement('column')}
-        className="button add-col"
-      >
-        +
-      </button>
-      <button
-        onClick={() => removeTableElement('row')}
-        className="button remove-row"
-        style={styleRemoveRowBtn}
-      >
-        -
-      </button>
-      <button
-        onClick={() => removeTableElement('column')}
-        className="button remove-col"
-        style={styleRemoveColBtn}
-      >
-        -
-      </button>
+      {buttons}
     </div>
   );
 };

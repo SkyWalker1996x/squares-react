@@ -1,8 +1,35 @@
-const initTableConfig = {
-  width: 4,
-  height: 4,
-  cellSize: 50,
-};
+import { generateId } from '../utils';
+
+const tableButtons = [
+  {
+    id: generateId(),
+    value: '-',
+    type: 'remove',
+    element: 'row',
+    className: 'button remove-row',
+  },
+  {
+    id: generateId(),
+    value: '-',
+    type: 'remove',
+    element: 'column',
+    className: 'button remove-col',
+  },
+  {
+    id: generateId(),
+    value: '+',
+    type: 'add',
+    element: 'row',
+    className: 'button add-row',
+  },
+  {
+    id: generateId(),
+    value: '+',
+    type: 'add',
+    element: 'column',
+    className: 'button add-col',
+  },
+];
 
 const initWidth = 4;
 const initHeight = 4;
@@ -17,7 +44,7 @@ const initTableInteractive = {
 };
 
 export {
-  initTableConfig,
+  tableButtons,
   initTableInteractive,
   initCellSize,
   initHeight,
