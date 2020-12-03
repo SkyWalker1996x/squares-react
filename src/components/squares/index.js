@@ -32,40 +32,32 @@ const Squares = ({ width, height, cellSize }) => {
       }
     });
   };
-  const removeRow = () => {
-    const { rows } = tableConfig;
-    if (rows.length <= 1) return;
+  const removeTableElement = (element) => {
+    const { rows, columns } = tableConfig;
+    if (element === 'row' && rows.length <= 1) return;
+    if (element === 'column' && columns.length <= 1) return;
 
-    const { rowIndex } = tableInteractive;
-    const newRows = rows.filter((v, k) => k !== rowIndex);
+    if (element === 'row') {
+      const { rowIndex } = tableInteractive;
+      const newRows = rows.filter((v, k) => k !== rowIndex);
 
-    setTableConfig((prevState) => {
-      return {
-        ...prevState,
-        rows: newRows,
-      };
-    });
+      setTableConfig((prevState) => {
+        return {
+          ...prevState,
+          rows: newRows,
+        };
+      });
+    } else {
+      const { cellIndex } = tableInteractive;
+      const newColumns = columns.filter((v, k) => k !== cellIndex);
 
-    setTableInteractive((prevState) => {
-      return {
-        ...prevState,
-        active: false,
-      };
-    });
-  };
-  const removeCol = () => {
-    const { columns } = tableConfig;
-    if (columns.length <= 1) return;
-
-    const { cellIndex } = tableInteractive;
-    const newColumns = columns.filter((v, k) => k !== cellIndex);
-
-    setTableConfig((prevState) => {
-      return {
-        ...prevState,
-        columns: newColumns,
-      };
-    });
+      setTableConfig((prevState) => {
+        return {
+          ...prevState,
+          columns: newColumns,
+        };
+      });
+    }
 
     setTableInteractive((prevState) => {
       return {
@@ -124,14 +116,14 @@ const Squares = ({ width, height, cellSize }) => {
         +
       </button>
       <button
-        onClick={removeRow}
+        onClick={() => removeTableElement('row')}
         className="button remove-row"
         style={styleRemoveRowBtn}
       >
         -
       </button>
       <button
-        onClick={removeCol}
+        onClick={() => removeTableElement('column')}
         className="button remove-col"
         style={styleRemoveColBtn}
       >
