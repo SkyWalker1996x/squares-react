@@ -29,34 +29,4 @@ describe('Squares testing', () => {
       });
     });
   });
-
-  describe('Correct render after add elements', () => {
-    const testProps = {
-      width: initWidth,
-      height: initHeight,
-      cellSize: initCellSize,
-    };
-    const testSquares = mount(<Squares {...testProps} />);
-    it('should add row', () => {
-      expect(testSquares.find('tbody').children().length).toEqual(initHeight);
-      testSquares.find('.add-row').simulate('click');
-      expect(testSquares.find('tbody').children().length).toBe(initHeight + 1);
-    });
-
-    it('should add column', () => {
-      testSquares
-        .find('tbody')
-        .children()
-        .forEach((node) => {
-          expect(node.children().length).toBe(initWidth);
-        });
-      testSquares.find('.add-col').simulate('click');
-      testSquares
-        .find('tbody')
-        .children()
-        .forEach((node) => {
-          expect(node.children().length).toBe(initWidth + 1);
-        });
-    });
-  });
 });
