@@ -11,30 +11,25 @@ const Squares = ({ width, height, cellSize }) => {
     initTableInteractive
   );
 
-  const addRow = () => {
+  const addTableElement = (element) => {
     setTableConfig((prevState) => {
-      const { rows } = prevState;
+      const { rows, columns } = prevState;
+
       const newItem = {
         id: generateId(),
       };
 
-      return {
-        ...prevState,
-        rows: [...rows, newItem],
-      };
-    });
-  };
-  const addCol = () => {
-    setTableConfig((prevState) => {
-      const { columns } = prevState;
-      const newItem = {
-        id: generateId(),
-      };
-
-      return {
-        ...prevState,
-        columns: [...columns, newItem],
-      };
+      if (element === 'row') {
+        return {
+          ...prevState,
+          rows: [...rows, newItem],
+        };
+      } else {
+        return {
+          ...prevState,
+          columns: [...columns, newItem],
+        };
+      }
     });
   };
   const removeRow = () => {
@@ -119,10 +114,13 @@ const Squares = ({ width, height, cellSize }) => {
       onMouseLeave={outTable}
     >
       <Table tableConfig={tableConfig} styleCellSize={styleCellSize} />
-      <button onClick={addRow} className="button add-row">
+      <button onClick={() => addTableElement('row')} className="button add-row">
         +
       </button>
-      <button onClick={addCol} className="button add-col">
+      <button
+        onClick={() => addTableElement('column')}
+        className="button add-col"
+      >
         +
       </button>
       <button
