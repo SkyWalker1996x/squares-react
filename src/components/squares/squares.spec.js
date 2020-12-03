@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'enzyme';
+import { render, mount } from 'enzyme';
 import Squares from './index';
 import { initWidth, initHeight, initCellSize } from '../../data';
 
@@ -86,6 +86,36 @@ describe('Squares testing', () => {
           .children()
           .forEach((node) => {
             expect(node.children().length).toBe(initWidth - 1);
+          });
+    });
+  });
+
+  describe('Correct render after remove last elements', () => {
+    const testProps = {
+      width: 1,
+      height: 1,
+      cellSize: initCellSize,
+    };
+    const testSquares = mount(<Squares {...testProps} />);
+    it('should not remove row', () => {
+      expect(testSquares.find('tbody').children().length).toEqual(1);
+      testSquares.find('.remove-row').simulate('click');
+      expect(testSquares.find('tbody').children().length).toBe(1);
+    });
+
+    it('should not remove column', () => {
+      testSquares
+          .find('tbody')
+          .children()
+          .forEach((node) => {
+            expect(node.children().length).toBe(1);
+          });
+      testSquares.find('.remove-col').simulate('click');
+      testSquares
+          .find('tbody')
+          .children()
+          .forEach((node) => {
+            expect(node.children().length).toBe(1);
           });
     });
   });
