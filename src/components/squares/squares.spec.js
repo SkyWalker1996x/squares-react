@@ -59,4 +59,34 @@ describe('Squares testing', () => {
         });
     });
   });
+
+  describe('Correct render after remove elements', () => {
+    const testProps = {
+      width: initWidth,
+      height: initHeight,
+      cellSize: initCellSize,
+    };
+    const testSquares = mount(<Squares {...testProps} />);
+    it('should remove row', () => {
+      expect(testSquares.find('tbody').children().length).toEqual(initHeight);
+      testSquares.find('.remove-row').simulate('click');
+      expect(testSquares.find('tbody').children().length).toBe(initHeight - 1);
+    });
+
+    it('should remove column', () => {
+      testSquares
+          .find('tbody')
+          .children()
+          .forEach((node) => {
+            expect(node.children().length).toBe(initWidth);
+          });
+      testSquares.find('.remove-col').simulate('click');
+      testSquares
+          .find('tbody')
+          .children()
+          .forEach((node) => {
+            expect(node.children().length).toBe(initWidth - 1);
+          });
+    });
+  });
 });
