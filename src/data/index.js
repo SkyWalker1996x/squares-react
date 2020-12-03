@@ -3,20 +3,6 @@ import { generateId } from '../utils';
 const tableButtons = [
   {
     id: generateId(),
-    value: '-',
-    type: 'remove',
-    element: 'row',
-    className: 'button remove-row',
-  },
-  {
-    id: generateId(),
-    value: '-',
-    type: 'remove',
-    element: 'column',
-    className: 'button remove-col',
-  },
-  {
-    id: generateId(),
     value: '+',
     type: 'add',
     element: 'row',
@@ -28,6 +14,20 @@ const tableButtons = [
     type: 'add',
     element: 'column',
     className: 'button add-col',
+  },
+  {
+    id: generateId(),
+    value: '-',
+    type: 'remove',
+    element: 'row',
+    className: 'button remove-row',
+  },
+  {
+    id: generateId(),
+    value: '-',
+    type: 'remove',
+    element: 'column',
+    className: 'button remove-col',
   },
 ];
 
