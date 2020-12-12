@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
-import Squares from './index';
+import Squares from './Squares';
 import { initWidth, initHeight, initCellSize } from '../../data';
 
 describe('Squares testing', () => {

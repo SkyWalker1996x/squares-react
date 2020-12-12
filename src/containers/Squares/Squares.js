@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table } from './table';
+import { Table } from '../../components/Table/Table';
 import { transformConfig, generateId } from '../../utils';
 import { initTableInteractive, tableButtons } from '../../data';
 
@@ -79,6 +79,7 @@ const Squares = ({ width, height, cellSize }) => {
   };
   const outTable = () => {
     setTableInteractive((prevState) => {
+      console.log('set')
       return {
         ...prevState,
         active: false,

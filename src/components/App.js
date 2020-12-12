@@ -1,5 +1,5 @@
 import React from 'react';
-import Squares from './squares';
+import Squares from '../containers/Squares/Squares';
 import { initWidth, initHeight, initCellSize } from '../data';
 
 const App = () => {
