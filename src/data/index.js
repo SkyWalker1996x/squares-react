@@ -37,8 +37,8 @@ const initCellSize = 50;
 
 const initTableInteractive = {
   active: false,
-  cellIndex: 0,
-  rowIndex: 0,
+  activeCellIndex: 0,
+  activeRowIndex: 0,
   offsetLeft: 0,
   offsetTop: 0,
 };

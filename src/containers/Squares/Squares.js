@@ -38,8 +38,8 @@ const Squares = ({ width, height, cellSize }) => {
     if (element === 'column' && columns.length <= 1) return;
 
     if (element === 'row') {
-      const { rowIndex } = tableInteractive;
-      const newRows = rows.filter((v, k) => k !== rowIndex);
+      const { activeRowIndex: removeRowIndex } = tableInteractive;
+      const newRows = rows.filter((row, rowIndex) => rowIndex !== removeRowIndex);
 
       setTableConfig((prevState) => {
         return {
@@ -48,8 +48,8 @@ const Squares = ({ width, height, cellSize }) => {
         };
       });
     } else {
-      const { cellIndex } = tableInteractive;
-      const newColumns = columns.filter((v, k) => k !== cellIndex);
+      const { activeCellIndex: removeCellIndex } = tableInteractive;
+      const newColumns = columns.filter((column, colIndex) => colIndex !== removeCellIndex);
 
       setTableConfig((prevState) => {
         return {
@@ -70,8 +70,8 @@ const Squares = ({ width, height, cellSize }) => {
     if (e.target.className.includes('cell')) {
       setTableInteractive({
         active: true,
-        cellIndex: e.target.cellIndex,
-        rowIndex: e.target.parentNode.rowIndex,
+        activeCellIndex: e.target.cellIndex,
+        activeRowIndex: e.target.parentNode.rowIndex,
         offsetLeft: e.target.offsetLeft,
         offsetTop: e.target.offsetTop,
       });
@@ -79,7 +79,6 @@ const Squares = ({ width, height, cellSize }) => {
   };
   const outTable = () => {
     setTableInteractive((prevState) => {
-      console.log('set')
       return {
         ...prevState,
         active: false,
