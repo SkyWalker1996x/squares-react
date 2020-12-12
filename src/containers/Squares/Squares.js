@@ -39,7 +39,9 @@ const Squares = ({ width, height, cellSize }) => {
 
     if (element === 'row') {
       const { activeRowIndex: removeRowIndex } = tableInteractive;
-      const newRows = rows.filter((row, rowIndex) => rowIndex !== removeRowIndex);
+      const newRows = rows.filter(
+        (row, rowIndex) => rowIndex !== removeRowIndex
+      );
 
       setTableConfig((prevState) => {
         return {
@@ -49,7 +51,9 @@ const Squares = ({ width, height, cellSize }) => {
       });
     } else {
       const { activeCellIndex: removeCellIndex } = tableInteractive;
-      const newColumns = columns.filter((column, colIndex) => colIndex !== removeCellIndex);
+      const newColumns = columns.filter(
+        (column, colIndex) => colIndex !== removeCellIndex
+      );
 
       setTableConfig((prevState) => {
         return {
@@ -74,6 +78,13 @@ const Squares = ({ width, height, cellSize }) => {
         activeRowIndex: e.target.parentNode.rowIndex,
         offsetLeft: e.target.offsetLeft,
         offsetTop: e.target.offsetTop,
+      });
+    } else {
+      setTableInteractive((prevState) => {
+        return {
+          ...prevState,
+          active: true,
+        };
       });
     }
   };
