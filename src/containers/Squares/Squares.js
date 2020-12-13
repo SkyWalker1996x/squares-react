@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Table } from '../../components/Table/Table';
+import { Button } from '../../components/Button/Button';
 import { transformConfig, generateId } from '../../utils';
 import { initTableInteractive, tableButtons } from '../../data';
 
@@ -98,11 +99,21 @@ const Squares = ({ width, height, cellSize }) => {
   };
 
   const styleRemoveColBtn = {
-    display: tableInteractive.active ? 'block' : 'none',
+    display:
+      tableConfig.columns.length < 2
+        ? 'none'
+        : tableInteractive.active
+        ? 'block'
+        : 'none',
     left: tableInteractive.offsetLeft,
   };
   const styleRemoveRowBtn = {
-    display: tableInteractive.active ? 'block' : 'none',
+    display:
+      tableConfig.rows.length < 2
+        ? 'none'
+        : tableInteractive.active
+        ? 'block'
+        : 'none',
     top: tableInteractive.offsetTop,
   };
   const styleCellSize = {
@@ -110,24 +121,15 @@ const Squares = ({ width, height, cellSize }) => {
     height: tableConfig.cellSize,
   };
 
-  const buttons = tableButtons.map((btn) => {
-    const { id, value, element, className, type } = btn;
-    const listener =
-      type === 'add'
-        ? () => addTableElement(element)
-        : () => removeTableElement(element);
-
-    let style;
-    if (type === 'remove') {
-      style = element === 'row' ? styleRemoveRowBtn : styleRemoveColBtn;
-    } else {
-      style = {};
-    }
-
+  const buttons = tableButtons.map((btnConfig) => {
     return (
-      <button key={id} onClick={listener} className={className} style={style}>
-        {value}
-      </button>
+      <Button
+        addTableElement={addTableElement}
+        removeTableElement={removeTableElement}
+        btnConfig={btnConfig}
+        styleRemoveRowBtn={styleRemoveRowBtn}
+        styleRemoveColBtn={styleRemoveColBtn}
+      />
     );
   });
 
