@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Table } from '../../components/Table/Table';
 import { Button } from '../../components/Button/Button';
 import { transformConfig, generateId } from '../../utils';
-import { initTableInteractive, tableButtons } from '../../data';
+import { initTableInteractive, tableButtons, delayTable } from '../../data';
 
 const Squares = ({ width, height, cellSize }) => {
+  let timeoutTable;
+
   const [tableConfig, setTableConfig] = useState(
     transformConfig({ width, height, cellSize })
   );
@@ -72,6 +74,8 @@ const Squares = ({ width, height, cellSize }) => {
     });
   };
   const overTable = (e) => {
+    clearTimeout(timeoutTable);
+
     if (e.target.className.includes('cell')) {
       setTableInteractive({
         active: true,
@@ -90,12 +94,14 @@ const Squares = ({ width, height, cellSize }) => {
     }
   };
   const outTable = () => {
-    setTableInteractive((prevState) => {
-      return {
-        ...prevState,
-        active: false,
-      };
-    });
+    timeoutTable = setTimeout(() => {
+      setTableInteractive((prevState) => {
+        return {
+          ...prevState,
+          active: false,
+        };
+      });
+    }, delayTable);
   };
 
   const styleRemoveColBtn = {
@@ -124,6 +130,7 @@ const Squares = ({ width, height, cellSize }) => {
   const buttons = tableButtons.map((btnConfig) => {
     return (
       <Button
+        key={btnConfig.id}
         addTableElement={addTableElement}
         removeTableElement={removeTableElement}
         btnConfig={btnConfig}

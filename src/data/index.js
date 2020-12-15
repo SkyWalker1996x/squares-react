@@ -43,7 +43,10 @@ const initTableInteractive = {
   offsetTop: 0,
 };
 
+const delayTable = 500;
+
 export {
+  delayTable,
   tableButtons,
   initTableInteractive,
   initCellSize,
