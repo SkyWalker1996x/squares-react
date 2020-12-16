@@ -1,20 +1,30 @@
 import React, { useState } from 'react';
-import { Table } from '../../components/Table/Table';
-import { Button } from '../../components/Button/Button';
+import Table from '../../components/Table/Table';
+import Button from '../../components/Button/Button';
 import { transformConfig, generateId } from '../../utils';
-import { initTableInteractive, tableButtons, delayTable } from '../../data';
+import { initTableInteractive, initTableButtons, delayTable } from '../../data';
+import {
+  squaresProps,
+  tableInteractive,
+  tableConfig,
+  timeoutTable,
+  bntConfig,
+  styleRemoveBtnType,
+  styleCellSizeType,
+  tableElementsListeners
+} from '../../interfaces';
 
-const Squares = ({ width, height, cellSize }) => {
-  let timeoutTable;
+const Squares = ({ width, height, cellSize }: squaresProps) => {
+  let timeoutTable: timeoutTable;
 
-  const [tableConfig, setTableConfig] = useState(
+  const [tableConfig, setTableConfig] = useState<tableConfig>(
     transformConfig({ width, height, cellSize })
   );
-  const [tableInteractive, setTableInteractive] = useState(
+  const [tableInteractive, setTableInteractive] = useState<tableInteractive>(
     initTableInteractive
   );
 
-  const addTableElement = (element) => {
+  const addTableElement: tableElementsListeners = (element) => {
     setTableConfig((prevState) => {
       const { rows, columns } = prevState;
 
@@ -35,7 +45,7 @@ const Squares = ({ width, height, cellSize }) => {
       }
     });
   };
-  const removeTableElement = (element) => {
+  const removeTableElement: tableElementsListeners = (element) => {
     const { rows, columns } = tableConfig;
     if (element === 'row' && rows.length <= 1) return;
     if (element === 'column' && columns.length <= 1) return;
@@ -73,16 +83,17 @@ const Squares = ({ width, height, cellSize }) => {
       };
     });
   };
-  const overTable = (e) => {
+  const overTable = (e: React.MouseEvent) => {
     clearTimeout(timeoutTable);
 
-    if (e.target.className.includes('cell')) {
+    if ((e.target as HTMLElement).className.includes('cell')) {
       setTableInteractive({
         active: true,
-        activeCellIndex: e.target.cellIndex,
-        activeRowIndex: e.target.parentNode.rowIndex,
-        offsetLeft: e.target.offsetLeft,
-        offsetTop: e.target.offsetTop,
+        activeCellIndex: (e.target as HTMLTableCellElement).cellIndex,
+        offsetLeft: (e.target as HTMLTableElement).offsetLeft,
+        offsetTop: (e.target as HTMLTableElement).offsetTop,
+        // @ts-ignore
+        activeRowIndex: (e.target as HTMLTableElement).parentNode.rowIndex,
       });
     } else {
       setTableInteractive((prevState) => {
@@ -104,7 +115,7 @@ const Squares = ({ width, height, cellSize }) => {
     }, delayTable);
   };
 
-  const styleRemoveColBtn = {
+  const styleRemoveColBtn: styleRemoveBtnType = {
     display:
       tableConfig.columns.length < 2
         ? 'none'
@@ -113,7 +124,7 @@ const Squares = ({ width, height, cellSize }) => {
         : 'none',
     left: tableInteractive.offsetLeft,
   };
-  const styleRemoveRowBtn = {
+  const styleRemoveRowBtn: styleRemoveBtnType = {
     display:
       tableConfig.rows.length < 2
         ? 'none'
@@ -122,12 +133,12 @@ const Squares = ({ width, height, cellSize }) => {
         : 'none',
     top: tableInteractive.offsetTop,
   };
-  const styleCellSize = {
+  const styleCellSize: styleCellSizeType = {
     width: tableConfig.cellSize,
     height: tableConfig.cellSize,
   };
 
-  const buttons = tableButtons.map((btnConfig) => {
+  const buttons = initTableButtons.map((btnConfig: bntConfig) => {
     return (
       <Button
         key={btnConfig.id}
@@ -143,7 +154,7 @@ const Squares = ({ width, height, cellSize }) => {
   return (
     <div
       className="table-wrapper"
-      onMouseOver={overTable}
+      onMouseMove={overTable}
       onMouseLeave={outTable}
     >
       <Table tableConfig={tableConfig} styleCellSize={styleCellSize} />

@@ -1,6 +1,6 @@
 import { generateId } from '../utils';
 
-const tableButtons = [
+const initTableButtons = [
   {
     id: generateId(),
     value: '+',
@@ -47,7 +47,7 @@ const delayTable = 500;
 
 export {
   delayTable,
-  tableButtons,
+  initTableButtons,
   initTableInteractive,
   initCellSize,
   initHeight,

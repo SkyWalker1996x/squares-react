@@ -1,4 +1,5 @@
 import React from 'react';
+import { buttonProps } from '../../interfaces';
 
 const Button = ({
   btnConfig,
@@ -6,7 +7,7 @@ const Button = ({
   removeTableElement,
   styleRemoveColBtn,
   styleRemoveRowBtn,
-}) => {
+}: buttonProps) => {
   const { id, value, element, className, type } = btnConfig;
   const listener =
     type === 'add'
@@ -27,4 +28,4 @@ const Button = ({
   );
 };
 
-export { Button };
+export default Button;

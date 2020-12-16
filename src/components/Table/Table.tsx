@@ -1,6 +1,7 @@
 import React from 'react';
+import { tableProps } from '../../interfaces';
 
-const Table = ({ tableConfig, styleCellSize }) => {
+const Table = ({ tableConfig, styleCellSize }: tableProps) => {
   const { rows, columns } = tableConfig;
 
   return (
@@ -10,7 +11,9 @@ const Table = ({ tableConfig, styleCellSize }) => {
           return (
             <tr className="row" key={item.id}>
               {columns.map((item) => {
-                return <td className="cell" key={item.id} style={styleCellSize} />;
+                return (
+                  <td className="cell" key={item.id} style={styleCellSize} />
+                );
               })}
             </tr>
           );
@@ -20,4 +23,4 @@ const Table = ({ tableConfig, styleCellSize }) => {
   );
 };
 
-export { Table };
+export default Table;
