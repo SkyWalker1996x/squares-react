@@ -154,7 +154,7 @@ const Squares = ({ width, height, cellSize }: squaresProps) => {
   return (
     <div
       className="table-wrapper"
-      onMouseMove={overTable}
+      onMouseOver={overTable}
       onMouseLeave={outTable}
     >
       <Table tableConfig={tableConfig} styleCellSize={styleCellSize} />
