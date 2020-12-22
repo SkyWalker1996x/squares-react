@@ -99,7 +99,7 @@ const Squares = ({ width, height, cellSize }: SquaresProps) => {
   const outTable = () => {
     timeoutTable = setTimeout(() => {
       setTableInteractive((prevState) => {
-        if (!tableInteractive.active) return prevState;
+        if (!prevState.active) return prevState;
         return {
           ...prevState,
           active: false,
