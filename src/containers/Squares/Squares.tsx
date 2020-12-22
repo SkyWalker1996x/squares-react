@@ -83,7 +83,7 @@ const Squares = ({ width, height, cellSize }: SquaresProps) => {
       };
     });
   };
-  const overTable = (e: React.MouseEvent) => {
+  const overTable = (e: React.MouseEvent<HTMLDivElement>) => {
     clearTimeout(timeoutTable);
 
     if ((e.target as HTMLElement).className.includes('cell')) {
@@ -92,8 +92,7 @@ const Squares = ({ width, height, cellSize }: SquaresProps) => {
         activeCellIndex: (e.target as HTMLTableCellElement).cellIndex,
         offsetLeft: (e.target as HTMLTableElement).offsetLeft,
         offsetTop: (e.target as HTMLTableElement).offsetTop,
-        // @ts-ignore
-        activeRowIndex: (e.target as HTMLTableElement).parentNode.rowIndex,
+        activeRowIndex: ((e.target as HTMLTableElement).parentNode as HTMLTableRowElement).rowIndex,
       });
     } else {
       setTableInteractive((prevState) => {
@@ -140,7 +139,6 @@ const Squares = ({ width, height, cellSize }: SquaresProps) => {
 
   const buttons = initTableButtons.map((btnConfig: BtnConfig) => {
     const {id, label, element, className, type} = btnConfig;
-    console.log(btnConfig);
 
     return (
       <Button
