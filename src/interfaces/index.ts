@@ -1,12 +1,12 @@
-export type tableElementsListeners = (element: string) => void;
+export type TableElementsListeners = (element: string) => void;
 
-export type timeoutTable = ReturnType<typeof setTimeout>;
+export type TimeoutTable = ReturnType<typeof setTimeout>;
 
-interface tableElement {
+interface TableElement {
   id: string;
 }
 
-export interface bntConfig {
+export interface BtnConfig {
   id: string;
   value: string;
   type: string;
@@ -14,18 +14,18 @@ export interface bntConfig {
   className: string;
 }
 
-export interface styleCellSizeType {
+export interface StyleCellSizeType {
   width: number;
   height: number;
 }
 
-export interface styleRemoveBtnType {
+export interface StyleRemoveBtnType {
   display: string;
   top?: number;
   left?: number;
 }
 
-export interface tableInteractive {
+export interface TableInteractive {
   active: boolean;
   activeCellIndex: number;
   activeRowIndex: number;
@@ -33,27 +33,27 @@ export interface tableInteractive {
   offsetTop: number;
 }
 
-export interface tableConfig {
-  rows: Array<tableElement>;
-  columns: Array<tableElement>;
+export interface TableConfig {
+  rows: Array<TableElement>;
+  columns: Array<TableElement>;
   cellSize: number;
 }
 
-export interface squaresProps {
+export interface SquaresProps {
   width: number;
   height: number;
   cellSize: number;
 }
 
-export interface tableProps {
-  tableConfig: tableConfig;
-  styleCellSize: styleCellSizeType;
+export interface TableProps {
+  tableConfig: TableConfig;
+  styleCellSize: StyleCellSizeType;
 }
 
-export interface buttonProps {
-  btnConfig: bntConfig;
-  addTableElement: tableElementsListeners;
-  removeTableElement: tableElementsListeners;
-  styleRemoveColBtn: styleRemoveBtnType;
-  styleRemoveRowBtn: styleRemoveBtnType;
+export interface ButtonProps {
+  btnConfig: BtnConfig;
+  addTableElement: TableElementsListeners;
+  removeTableElement: TableElementsListeners;
+  styleRemoveColBtn: StyleRemoveBtnType;
+  styleRemoveRowBtn: StyleRemoveBtnType;
 }

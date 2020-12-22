@@ -1,7 +1,7 @@
 import React from 'react';
-import { tableProps } from '../../interfaces';
+import { TableProps } from '../../interfaces';
 
-const Table = ({ tableConfig, styleCellSize }: tableProps) => {
+const Table = ({ tableConfig, styleCellSize }: TableProps) => {
   const { rows, columns } = tableConfig;
 
   return (

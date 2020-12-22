@@ -1,5 +1,5 @@
 import React from 'react';
-import { buttonProps } from '../../interfaces';
+import { ButtonProps } from '../../interfaces';
 
 const Button = ({
   btnConfig,
@@ -7,7 +7,7 @@ const Button = ({
   removeTableElement,
   styleRemoveColBtn,
   styleRemoveRowBtn,
-}: buttonProps) => {
+}: ButtonProps) => {
   const { id, value, element, className, type } = btnConfig;
   const listener =
     type === 'add'

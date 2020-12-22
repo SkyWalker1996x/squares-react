@@ -4,27 +4,27 @@ import Button from '../../components/Button/Button';
 import { transformConfig, generateId } from '../../utils';
 import { initTableInteractive, initTableButtons, delayTable } from '../../data';
 import {
-  squaresProps,
-  tableInteractive,
-  tableConfig,
-  timeoutTable,
-  bntConfig,
-  styleRemoveBtnType,
-  styleCellSizeType,
-  tableElementsListeners
+  SquaresProps,
+  TableInteractive,
+  TableConfig,
+  TimeoutTable,
+  BtnConfig,
+  StyleRemoveBtnType,
+  StyleCellSizeType,
+  TableElementsListeners
 } from '../../interfaces';
 
-const Squares = ({ width, height, cellSize }: squaresProps) => {
-  let timeoutTable: timeoutTable;
+const Squares = ({ width, height, cellSize }: SquaresProps) => {
+  let timeoutTable: TimeoutTable;
 
-  const [tableConfig, setTableConfig] = useState<tableConfig>(
+  const [tableConfig, setTableConfig] = useState<TableConfig>(
     transformConfig({ width, height, cellSize })
   );
-  const [tableInteractive, setTableInteractive] = useState<tableInteractive>(
+  const [tableInteractive, setTableInteractive] = useState<TableInteractive>(
     initTableInteractive
   );
 
-  const addTableElement: tableElementsListeners = (element) => {
+  const addTableElement: TableElementsListeners = (element) => {
     setTableConfig((prevState) => {
       const { rows, columns } = prevState;
 
@@ -45,7 +45,7 @@ const Squares = ({ width, height, cellSize }: squaresProps) => {
       }
     });
   };
-  const removeTableElement: tableElementsListeners = (element) => {
+  const removeTableElement: TableElementsListeners = (element) => {
     const { rows, columns } = tableConfig;
     if (element === 'row' && rows.length <= 1) return;
     if (element === 'column' && columns.length <= 1) return;
@@ -115,7 +115,7 @@ const Squares = ({ width, height, cellSize }: squaresProps) => {
     }, delayTable);
   };
 
-  const styleRemoveColBtn: styleRemoveBtnType = {
+  const styleRemoveColBtn: StyleRemoveBtnType = {
     display:
       tableConfig.columns.length < 2
         ? 'none'
@@ -124,7 +124,7 @@ const Squares = ({ width, height, cellSize }: squaresProps) => {
         : 'none',
     left: tableInteractive.offsetLeft,
   };
-  const styleRemoveRowBtn: styleRemoveBtnType = {
+  const styleRemoveRowBtn: StyleRemoveBtnType = {
     display:
       tableConfig.rows.length < 2
         ? 'none'
@@ -133,12 +133,12 @@ const Squares = ({ width, height, cellSize }: squaresProps) => {
         : 'none',
     top: tableInteractive.offsetTop,
   };
-  const styleCellSize: styleCellSizeType = {
+  const styleCellSize: StyleCellSizeType = {
     width: tableConfig.cellSize,
     height: tableConfig.cellSize,
   };
 
-  const buttons = initTableButtons.map((btnConfig: bntConfig) => {
+  const buttons = initTableButtons.map((btnConfig: BtnConfig) => {
     return (
       <Button
         key={btnConfig.id}
