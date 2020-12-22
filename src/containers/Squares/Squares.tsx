@@ -139,14 +139,26 @@ const Squares = ({ width, height, cellSize }: SquaresProps) => {
   };
 
   const buttons = initTableButtons.map((btnConfig: BtnConfig) => {
+    const {id, label, element, className, type} = btnConfig;
+    console.log(btnConfig);
+
     return (
       <Button
-        key={btnConfig.id}
-        addTableElement={addTableElement}
-        removeTableElement={removeTableElement}
-        btnConfig={btnConfig}
-        styleRemoveRowBtn={styleRemoveRowBtn}
-        styleRemoveColBtn={styleRemoveColBtn}
+        key={id}
+        onClick={
+          type === 'remove'
+              ? () => removeTableElement(element)
+              : () => addTableElement(element)
+        }
+        label={label}
+        className={className}
+        style={
+          type === 'add'
+              ? {}
+              : element === 'row'
+              ? styleRemoveRowBtn
+              : styleRemoveColBtn
+        }
       />
     );
   });

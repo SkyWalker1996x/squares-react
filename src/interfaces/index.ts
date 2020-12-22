@@ -8,7 +8,7 @@ interface TableElement {
 
 export interface BtnConfig {
   id: string;
-  value: string;
+  label: string;
   type: string;
   element: string;
   className: string;
@@ -51,9 +51,8 @@ export interface TableProps {
 }
 
 export interface ButtonProps {
-  btnConfig: BtnConfig;
-  addTableElement: TableElementsListeners;
-  removeTableElement: TableElementsListeners;
-  styleRemoveColBtn: StyleRemoveBtnType;
-  styleRemoveRowBtn: StyleRemoveBtnType;
+  label: string | number;
+  className: string;
+  onClick: () => void;
+  style: object | StyleRemoveBtnType;
 }

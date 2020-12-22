@@ -39,7 +39,8 @@ describe('Squares testing', () => {
     const testSquares = mount(<Squares {...testProps} />);
     it('should add row', () => {
       expect(testSquares.find('tbody').children().length).toEqual(initHeight);
-      testSquares.find('.add-row').simulate('click');
+      console.log(testSquares.debug());
+      testSquares.find('.add-row').at(0).simulate('click');
       expect(testSquares.find('tbody').children().length).toBe(initHeight + 1);
     });
 
@@ -50,7 +51,7 @@ describe('Squares testing', () => {
         .forEach((node) => {
           expect(node.children().length).toBe(initWidth);
         });
-      testSquares.find('.add-col').simulate('click');
+      testSquares.find('.add-col').at(0).simulate('click');
       testSquares
         .find('tbody')
         .children()
@@ -69,7 +70,7 @@ describe('Squares testing', () => {
     const testSquares = mount(<Squares {...testProps} />);
     it('should remove row', () => {
       expect(testSquares.find('tbody').children().length).toEqual(initHeight);
-      testSquares.find('.remove-row').simulate('click');
+      testSquares.find('.remove-row').at(0).simulate('click');
       expect(testSquares.find('tbody').children().length).toBe(initHeight - 1);
     });
 
@@ -80,7 +81,7 @@ describe('Squares testing', () => {
           .forEach((node) => {
             expect(node.children().length).toBe(initWidth);
           });
-      testSquares.find('.remove-col').simulate('click');
+      testSquares.find('.remove-col').at(0).simulate('click');
       testSquares
           .find('tbody')
           .children()
@@ -99,7 +100,7 @@ describe('Squares testing', () => {
     const testSquares = mount(<Squares {...testProps} />);
     it('should not remove row', () => {
       expect(testSquares.find('tbody').children().length).toEqual(1);
-      testSquares.find('.remove-row').simulate('click');
+      testSquares.find('.remove-row').at(0).simulate('click');
       expect(testSquares.find('tbody').children().length).toBe(1);
     });
 
@@ -110,7 +111,7 @@ describe('Squares testing', () => {
           .forEach((node) => {
             expect(node.children().length).toBe(1);
           });
-      testSquares.find('.remove-col').simulate('click');
+      testSquares.find('.remove-col').at(0).simulate('click');
       testSquares
           .find('tbody')
           .children()

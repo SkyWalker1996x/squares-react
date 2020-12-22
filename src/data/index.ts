@@ -3,28 +3,28 @@ import { generateId } from '../utils';
 const initTableButtons = [
   {
     id: generateId(),
-    value: '+',
+    label: '+',
     type: 'add',
     element: 'row',
     className: 'button add-row',
   },
   {
     id: generateId(),
-    value: '+',
+    label: '+',
     type: 'add',
     element: 'column',
     className: 'button add-col',
   },
   {
     id: generateId(),
-    value: '-',
+    label: '-',
     type: 'remove',
     element: 'row',
     className: 'button remove-row',
   },
   {
     id: generateId(),
-    value: '-',
+    label: '-',
     type: 'remove',
     element: 'column',
     className: 'button remove-col',

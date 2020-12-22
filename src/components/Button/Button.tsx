@@ -1,29 +1,10 @@
 import React from 'react';
 import { ButtonProps } from '../../interfaces';
 
-const Button = ({
-  btnConfig,
-  addTableElement,
-  removeTableElement,
-  styleRemoveColBtn,
-  styleRemoveRowBtn,
-}: ButtonProps) => {
-  const { id, value, element, className, type } = btnConfig;
-  const listener =
-    type === 'add'
-      ? () => addTableElement(element)
-      : () => removeTableElement(element);
-
-  let style;
-  if (type === 'remove') {
-    style = element === 'row' ? styleRemoveRowBtn : styleRemoveColBtn;
-  } else {
-    style = {};
-  }
-
+const Button = ({ label, className, onClick, style }: ButtonProps) => {
   return (
-    <button key={id} onClick={listener} className={className} style={style}>
-      {value}
+    <button onClick={onClick} className={className} style={style}>
+      {label}
     </button>
   );
 };
