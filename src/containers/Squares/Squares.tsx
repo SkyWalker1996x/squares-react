@@ -94,18 +94,12 @@ const Squares = ({ width, height, cellSize }: SquaresProps) => {
         offsetTop: (e.target as HTMLTableElement).offsetTop,
         activeRowIndex: ((e.target as HTMLTableElement).parentNode as HTMLTableRowElement).rowIndex,
       });
-    } else {
-      setTableInteractive((prevState) => {
-        return {
-          ...prevState,
-          active: true,
-        };
-      });
     }
   };
   const outTable = () => {
     timeoutTable = setTimeout(() => {
       setTableInteractive((prevState) => {
+        if (!tableInteractive.active) return prevState;
         return {
           ...prevState,
           active: false,
